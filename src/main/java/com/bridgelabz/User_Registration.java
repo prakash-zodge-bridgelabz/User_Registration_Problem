@@ -3,36 +3,44 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 1 :
-// As a User need to enter a valid First Name
-//- First name starts with Cap and has minimum 3 characters
+// Use Case 2 :
+// As a User need to enter a valid Last Name
+// - Last name starts with Cap and has minimum 3 characters
 class User{
-    String first_name;
-    User(String first_name){
-        this.first_name = first_name;
+    String firstName,lastName;
+    User(String firstName,String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
     @Override
     public String toString() {
-        return "First Name : "+first_name;
+        return "First Name : "+firstName+
+                "Last Name : "+lastName;
     }
 }
-public class User_Registration {
-    String firstName;
+class validateUser{
+    String firstName,lastName;
     Scanner sc = new Scanner(System.in);
-    public void setFirstName(){
+    public void setDetails(){
         System.out.println("Enter First Name : ");
         firstName = sc.next();
-        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
-            User prakash = new User(firstName);
+        System.out.println("Enter Last Name : ");
+        lastName = sc.next();
+        boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
+        boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
+        if(correctFirstName && correctLastName){
+            User prakash = new User(firstName,lastName);
             System.out.println(prakash);
         }
         else {
-            System.out.println("Invalid First Name");
+            System.out.println("Invalid Details...");
         }
     }
+}
+public class User_Registration {
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Problem");
-        User_Registration u = new User_Registration();
-        u.setFirstName();
+        validateUser v = new validateUser();
+        v.setDetails();
     }
 }
