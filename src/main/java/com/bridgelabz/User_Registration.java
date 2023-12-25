@@ -3,33 +3,38 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 2 :
-// As a User need to enter a valid Last Name
-// - Last name starts with Cap and has minimum 3 characters
+// Use Case 3:
+// As a User need to enter a valid email - E.g. abc.xyz@bl.co.in
+// - Email has 3 mandatory parts (abc, bl & co) and 2 optional (xyz & in) with precise @ and . positions
 class User{
-    String firstName,lastName;
-    User(String firstName,String lastName){
+    String firstName,lastName,email;
+    User(String firstName,String lastName,String email){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
     @Override
     public String toString() {
         return "First Name : "+firstName+
-                "Last Name : "+lastName;
+                "\nLast Name : "+lastName+
+                "\nEmail : "+email;
     }
 }
 class validateUser{
-    String firstName,lastName;
+    String firstName,lastName,email;
     Scanner sc = new Scanner(System.in);
     public void setDetails(){
         System.out.println("Enter First Name : ");
         firstName = sc.next();
         System.out.println("Enter Last Name : ");
         lastName = sc.next();
+        System.out.println("Enter Email : ");
+        email = sc.next();
         boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
         boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
-        if(correctFirstName && correctLastName){
-            User prakash = new User(firstName,lastName);
+        boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
+        if(correctFirstName && correctLastName && correctEmail){
+            User prakash = new User(firstName,lastName,email);
             System.out.println(prakash);
         }
         else {
