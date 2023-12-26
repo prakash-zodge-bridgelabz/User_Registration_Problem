@@ -63,8 +63,9 @@ class validateUser{
         }
     }
     //Atleast 1 upper case & Minimum 8 characters
+    // at least 1 numeric number in the password
     public boolean validPassword(String password){
-        if(Pattern.matches("^(?=.*[A-Z]).{8,}$",password)){
+        if(Pattern.matches("^(?=.*[A-Z])(?=.*[0-9]).{8,}$",password)){
             return true;
         }
         else {
