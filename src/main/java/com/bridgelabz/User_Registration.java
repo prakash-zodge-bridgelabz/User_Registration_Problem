@@ -27,19 +27,66 @@ class User{
 }
 <<<<<<< HEAD
 class validateUser{
-    String firstName,lastName,email,mobileNo,password;
+    public boolean validFirstName(String firstName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validLastName(String lastName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",lastName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid Last Name");
+            return false;
+        }
+    }
+    public boolean validEmail(String email){
+        if(Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid Email");
+            return false;
+        }
+    }
+    public boolean validMobile(String mobileNumber){
+        if(Pattern.matches("^[9]{1}[1]{1}\\s[0-9]{10}$",mobileNumber)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid Mobile Number");
+            return false;
+        }
+    }
+    //Atleast 1 upper case & Minimum 8 characters
+    public boolean validPassword(String password){
+        if(Pattern.matches("(([A-Z]+)([a-z]{7,}))",password)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid Password");
+            return false;
+        }
+    }
+    String firstName,lastName,email,mobileNumber,password;
     Scanner sc = new Scanner(System.in);
     public void setDetails(){
         System.out.println("Enter First Name : ");
-        firstName = sc.next();
+        firstName = sc.nextLine();
         System.out.println("Enter Last Name : ");
-        lastName = sc.next();
+        lastName = sc.nextLine();
         System.out.println("Enter Email : ");
-        email = sc.next();
+        email = sc.nextLine();
         System.out.println("Enter Mobile Number : ");
-        mobileNo = sc.next();
+        mobileNumber = sc.nextLine();
         System.out.println("Enter Password : ");
         password = sc.next();
+<<<<<<< HEAD
         boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
         boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
         boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
@@ -55,6 +102,11 @@ class validUser{
         if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
             User prakash = new User(firstName);
 >>>>>>> UC_1_User_need_to_enter_valid_first_name
+=======
+        if(validFirstName(firstName) && validLastName(lastName) && validEmail(email) &&
+                validMobile(mobileNumber) && validPassword(password)){
+            User prakash = new User(firstName,lastName,email,mobileNumber,password);
+>>>>>>> UC_6_Password_should_have_at_least_1_upper_case
             System.out.println(prakash);
             return true;
         }
