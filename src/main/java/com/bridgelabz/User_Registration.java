@@ -3,27 +3,30 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 4:
-// As a User need to follow pre-defined Mobile Format - E.g. 91 9919819801 - Country code follow by space and 10
-//digit number
+// Use Case 5:
+// As a User need to follow pre-defined Password rules.
+// Rule1
+//– minimum 8 Characters - NOTE – All rules must be passed
 class User{
-    String firstName,lastName,email,mobileNumber;
-    User(String firstName,String lastName,String email,String mobileNumber){
+    String firstName,lastName,email,mobileNumber,password;
+    User(String firstName,String lastName,String email,String mobileNumber,String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
+        this.password = password;
     }
     @Override
     public String toString() {
         return "First Name : "+firstName+
                 "\nLast Name : "+lastName+
                 "\nEmail : "+email+
-                "\nMobile Number : "+mobileNumber;
+                "\nMobile Number : "+mobileNumber+
+                "\nPassword : "+password;
     }
 }
 class validateUser{
-    String firstName,lastName,email,mobileNo;
+    String firstName,lastName,email,mobileNo,password;
     Scanner sc = new Scanner(System.in);
     public void setDetails(){
         System.out.println("Enter First Name : ");
@@ -34,12 +37,15 @@ class validateUser{
         email = sc.next();
         System.out.println("Enter Mobile Number : ");
         mobileNo = sc.next();
+        System.out.println("Enter Password : ");
+        password = sc.next();
         boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
         boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
         boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
         boolean correctMobileNumber = Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNo);
-        if(correctFirstName && correctLastName && correctEmail && correctMobileNumber){
-            User prakash = new User(firstName,lastName,email,mobileNo);
+        boolean correctPassword = Pattern.matches("[\\w!@#$%^&*]{8,}",password);
+        if(correctFirstName && correctLastName && correctEmail && correctMobileNumber && correctPassword){
+            User prakash = new User(firstName,lastName,email,mobileNo,password);
             System.out.println(prakash);
         }
         else {
