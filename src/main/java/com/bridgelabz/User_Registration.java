@@ -3,9 +3,9 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 7:
-// Rule 3
-// – Should have at least 1 numeric number in the password
+// Use Case 6:
+// Rule 2
+// – Should have at least 1 Upper Case
 // - NOTE – All rules must be passed
 class User{
     String firstName,lastName,email,mobileNumber,password;
@@ -25,7 +25,6 @@ class User{
                 "\nPassword : "+password;
     }
 }
-<<<<<<< HEAD
 class validateUser{
     public boolean validFirstName(String firstName){
         if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
@@ -86,53 +85,20 @@ class validateUser{
         mobileNumber = sc.nextLine();
         System.out.println("Enter Password : ");
         password = sc.next();
-<<<<<<< HEAD
-        boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
-        boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
-        boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
-        boolean correctMobileNumber = Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNo);
-        //                                              //Atleast 1 upper case & Minimum 8 characters
-                                                        //at least 1 numeric number in the password
-        boolean correctPassword = Pattern.matches("[A-Z]{1,}[a-z0-9]{7,}",password);
-        if(correctFirstName && correctLastName && correctEmail && correctMobileNumber && correctPassword){
-            User prakash = new User(firstName,lastName,email,mobileNo,password);
-=======
-class validUser{
-    public boolean validFirstName(String firstName){
-        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
-            User prakash = new User(firstName);
->>>>>>> UC_1_User_need_to_enter_valid_first_name
-=======
         if(validFirstName(firstName) && validLastName(lastName) && validEmail(email) &&
                 validMobile(mobileNumber) && validPassword(password)){
             User prakash = new User(firstName,lastName,email,mobileNumber,password);
->>>>>>> UC_6_Password_should_have_at_least_1_upper_case
             System.out.println(prakash);
-            return true;
         }
         else {
-<<<<<<< HEAD
             System.out.println("Invalid Details...");
-=======
-            System.out.println("Invalid First Name");
-            return false;
->>>>>>> UC_1_User_need_to_enter_valid_first_name
         }
     }
 }
 public class User_Registration {
     public static void main(String[] args) {
-        System.out.println("Welcome to User Registration Problem");
-<<<<<<< HEAD
+        System.out.println("Welcome to User Registration Problem...");
         validateUser v = new validateUser();
         v.setDetails();
-=======
-
-        String firstName;
-        Scanner sc = new Scanner(System.in);
-        validUser u = new validUser();
-
-        System.out.println("Enter First Name : ");      firstName = sc.next();      u.validFirstName(firstName);
->>>>>>> UC_1_User_need_to_enter_valid_first_name
     }
 }
