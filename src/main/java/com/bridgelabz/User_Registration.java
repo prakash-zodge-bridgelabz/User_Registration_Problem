@@ -21,6 +21,33 @@ class User{
     }
 }
 class validateUser{
+    public boolean validFirstName(String firstName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validLastName(String lastName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",lastName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validEmail(String email){
+        if(Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
     String firstName,lastName,email;
     Scanner sc = new Scanner(System.in);
     public void setDetails(){
@@ -30,10 +57,7 @@ class validateUser{
         lastName = sc.next();
         System.out.println("Enter Email : ");
         email = sc.next();
-        boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
-        boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
-        boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
-        if(correctFirstName && correctLastName && correctEmail){
+        if(validFirstName(firstName) && validLastName(lastName) && validEmail(email)){
             User prakash = new User(firstName,lastName,email);
             System.out.println(prakash);
         }
