@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 // - Last name starts with Cap and has minimum 3 characters
 class User{
     String firstName,lastName;
+    User(String firstName){
+        this.firstName = firstName;
+    }
     User(String firstName,String lastName){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +24,17 @@ class User{
 class validateUser{
     String firstName,lastName;
     Scanner sc = new Scanner(System.in);
+    public boolean validFirstName(String firstName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
+            User prakash = new User(firstName);
+            System.out.println(prakash);
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
     public void setDetails(){
         System.out.println("Enter First Name : ");
         firstName = sc.next();
