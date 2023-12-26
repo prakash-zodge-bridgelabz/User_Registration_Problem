@@ -16,23 +16,27 @@ class User{
         return "First Name : "+first_name;
     }
 }
-public class User_Registration {
-    String firstName;
-    Scanner sc = new Scanner(System.in);
-    public void setFirstName(){
-        System.out.println("Enter First Name : ");
-        firstName = sc.next();
+class validUser{
+    public boolean validFirstName(String firstName){
         if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
             User prakash = new User(firstName);
             System.out.println(prakash);
+            return true;
         }
         else {
             System.out.println("Invalid First Name");
+            return false;
         }
     }
+}
+public class User_Registration {
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Problem");
-        User_Registration u = new User_Registration();
-        u.setFirstName();
+
+        String firstName;
+        Scanner sc = new Scanner(System.in);
+        validUser u = new validUser();
+
+        System.out.println("Enter First Name : ");      firstName = sc.next();      u.validFirstName(firstName);
     }
 }
