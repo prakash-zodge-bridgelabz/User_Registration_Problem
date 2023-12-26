@@ -25,6 +25,7 @@ class User{
                 "\nPassword : "+password;
     }
 }
+<<<<<<< HEAD
 class validateUser{
     String firstName,lastName,email,mobileNo,password;
     Scanner sc = new Scanner(System.in);
@@ -48,17 +49,38 @@ class validateUser{
         boolean correctPassword = Pattern.matches("[A-Z]{1,}[a-z0-9]{7,}",password);
         if(correctFirstName && correctLastName && correctEmail && correctMobileNumber && correctPassword){
             User prakash = new User(firstName,lastName,email,mobileNo,password);
+=======
+class validUser{
+    public boolean validFirstName(String firstName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
+            User prakash = new User(firstName);
+>>>>>>> UC_1_User_need_to_enter_valid_first_name
             System.out.println(prakash);
+            return true;
         }
         else {
+<<<<<<< HEAD
             System.out.println("Invalid Details...");
+=======
+            System.out.println("Invalid First Name");
+            return false;
+>>>>>>> UC_1_User_need_to_enter_valid_first_name
         }
     }
 }
 public class User_Registration {
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Problem");
+<<<<<<< HEAD
         validateUser v = new validateUser();
         v.setDetails();
+=======
+
+        String firstName;
+        Scanner sc = new Scanner(System.in);
+        validUser u = new validUser();
+
+        System.out.println("Enter First Name : ");      firstName = sc.next();      u.validFirstName(firstName);
+>>>>>>> UC_1_User_need_to_enter_valid_first_name
     }
 }
