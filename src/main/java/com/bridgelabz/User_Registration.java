@@ -3,10 +3,10 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 5:
-// As a User need to follow pre-defined Password rules.
-// Rule1
-//– minimum 8 Characters - NOTE – All rules must be passed
+// Use Case 6:
+// Rule2
+//– Should have at least 1 Upper Case
+// - NOTE – All rules must be passed
 class User{
     String firstName,lastName,email,mobileNumber,password;
     User(String firstName,String lastName,String email,String mobileNumber,String password){
@@ -43,7 +43,8 @@ class validateUser{
         boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
         boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
         boolean correctMobileNumber = Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNo);
-        boolean correctPassword = Pattern.matches("[\\w!@#$%^&*]{8,}",password);
+        //                                              //Atleast 1 upper case & Minimum 8 characters
+        boolean correctPassword = Pattern.matches("[A-Z]{1,}[a-z0-9]{7,}",password);
         if(correctFirstName && correctLastName && correctEmail && correctMobileNumber && correctPassword){
             User prakash = new User(firstName,lastName,email,mobileNo,password);
             System.out.println(prakash);
