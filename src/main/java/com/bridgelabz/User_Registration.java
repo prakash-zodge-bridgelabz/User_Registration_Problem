@@ -3,9 +3,9 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 6:
-// Rule2
-//– Should have at least 1 Upper Case
+// Use Case 7:
+// Rule 3
+// – Should have at least 1 numeric number in the password
 // - NOTE – All rules must be passed
 class User{
     String firstName,lastName,email,mobileNumber,password;
@@ -44,6 +44,7 @@ class validateUser{
         boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
         boolean correctMobileNumber = Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNo);
         //                                              //Atleast 1 upper case & Minimum 8 characters
+                                                        //at least 1 numeric number in the password
         boolean correctPassword = Pattern.matches("[A-Z]{1,}[a-z0-9]{7,}",password);
         if(correctFirstName && correctLastName && correctEmail && correctMobileNumber && correctPassword){
             User prakash = new User(firstName,lastName,email,mobileNo,password);
