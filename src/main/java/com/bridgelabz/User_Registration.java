@@ -3,9 +3,9 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 6:
-// Rule 2
-// – Should have at least 1 Upper Case
+// Use Case 7:
+// Rule3
+// – Should have at least 1 numeric number in the password
 // - NOTE – All rules must be passed
 class User{
     String firstName,lastName,email,mobileNumber,password;
@@ -64,7 +64,7 @@ class validateUser{
     }
     //Atleast 1 upper case & Minimum 8 characters
     public boolean validPassword(String password){
-        if(Pattern.matches("(([A-Z]+)([a-z]{7,}))",password)){
+        if(Pattern.matches("^(?=.*[A-Z]).{8,}$",password)){
             return true;
         }
         else {
