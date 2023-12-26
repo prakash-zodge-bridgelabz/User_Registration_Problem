@@ -4,8 +4,8 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 // Use Case 6:
-// Rule2
-//– Should have at least 1 Upper Case
+// Rule 2
+// – Should have at least 1 Upper Case
 // - NOTE – All rules must be passed
 class User{
     String firstName,lastName,email,mobileNumber,password;
@@ -97,7 +97,7 @@ class validateUser{
 }
 public class User_Registration {
     public static void main(String[] args) {
-        System.out.println("Welcome to User Registration Problem");
+        System.out.println("Welcome to User Registration Problem...");
         validateUser v = new validateUser();
         v.setDetails();
     }
