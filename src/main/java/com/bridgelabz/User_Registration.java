@@ -23,7 +23,43 @@ class User{
     }
 }
 class validateUser{
-    String firstName,lastName,email,mobileNo;
+    public boolean validFirstName(String firstName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validLastName(String lastName){
+        if(Pattern.matches("^[A-Z][a-z]{2,}",lastName)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validEmail(String email){
+        if(Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    public boolean validMobile(String mobileNumber){
+        if(Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNumber)){
+            return true;
+        }
+        else {
+            System.out.println("Invalid First Name");
+            return false;
+        }
+    }
+    String firstName,lastName,email,mobileNumber;
     Scanner sc = new Scanner(System.in);
     public void setDetails(){
         System.out.println("Enter First Name : ");
@@ -33,13 +69,9 @@ class validateUser{
         System.out.println("Enter Email : ");
         email = sc.next();
         System.out.println("Enter Mobile Number : ");
-        mobileNo = sc.next();
-        boolean correctFirstName = Pattern.matches("^[A-Z][a-z]{2,}",firstName);
-        boolean correctLastName = Pattern.matches("^[A-Z][a-z]{2,}",lastName);
-        boolean correctEmail = Pattern.matches("^[A-Za-z0-9.]+@(.+)$",email);
-        boolean correctMobileNumber = Pattern.matches("^[9]{1}[1]{1}\s[0-9]{10}",mobileNo);
-        if(correctFirstName && correctLastName && correctEmail && correctMobileNumber){
-            User prakash = new User(firstName,lastName,email,mobileNo);
+        mobileNumber = sc.next();
+        if(validFirstName(firstName) && validLastName(lastName) && validEmail(email) && validMobile(mobileNumber)){
+            User prakash = new User(firstName,lastName,email,mobileNumber);
             System.out.println(prakash);
         }
         else {
