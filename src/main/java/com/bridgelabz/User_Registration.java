@@ -3,9 +3,8 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 8:
-// Rule4 – Has exactly 1 Special Character
-//- NOTE – All rules must be passed
+// Use Case 9:
+// Should clear all email samples provided separately
 class User{
     String firstName,lastName,email,mobileNumber,password;
     User(String firstName,String lastName,String email,String mobileNumber,String password){
@@ -100,7 +99,7 @@ class validateUser{
 public class User_Registration {
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Problem...");
-        validateUser v = new validateUser();
-        v.setDetails();
+//        validateUser v = new validateUser();
+//        v.setDetails();
     }
 }
