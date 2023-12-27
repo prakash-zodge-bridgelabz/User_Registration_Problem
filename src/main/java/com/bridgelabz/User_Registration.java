@@ -3,8 +3,12 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 9:
-// Should clear all email samples provided separately
+// Use Case 10:
+// Write JUnit Test to validate the User Entry for First Name, Last Name,
+// Email, Mobile, and Password.
+// - Write Junit Test for Happy as well as Sad test case.
+// - Happy Test Case validates the Entry Successfully
+// - Sad Test Cases fails the Entry
 class User{
     String firstName,lastName,email,mobileNumber,password;
     User(String firstName,String lastName,String email,String mobileNumber,String password){
@@ -51,7 +55,7 @@ class validateUser{
             return false;
         }
     }
-    public boolean validMobile(String mobileNumber){
+    public boolean validMobileNumber(String mobileNumber){
         if(Pattern.matches("^[9]{1}[1]{1}\\s[0-9]{10}$",mobileNumber)){
             return true;
         }
@@ -87,7 +91,7 @@ class validateUser{
         System.out.println("Enter Password : ");
         password = sc.next();
         if(validFirstName(firstName) && validLastName(lastName) && validEmail(email) &&
-                validMobile(mobileNumber) && validPassword(password)){
+                validMobileNumber(mobileNumber) && validPassword(password)){
             User prakash = new User(firstName,lastName,email,mobileNumber,password);
             System.out.println(prakash);
         }
