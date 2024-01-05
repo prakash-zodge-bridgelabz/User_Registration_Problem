@@ -3,8 +3,9 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-// Use Case 11:
-// Write JUnit Parameterised Test to validate multiple entry for the Email Address.
+// Use Case 12:
+// Refactor the Code to throw custom exceptions in case of Invalid User Details
+// - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name, Email, Mobile, and Password
 class User{
     String firstName,lastName,email,mobileNumber,password;
     User(String firstName,String lastName,String email,String mobileNumber,String password){
@@ -23,59 +24,59 @@ class User{
                 "\nPassword : "+password;
     }
 }
+class InvalidUserDetailsException extends Exception{
+    InvalidUserDetailsException(String errorMessage){
+        super(errorMessage);
+    }
+}
 class validateUser{
-    public boolean validFirstName(String firstName){
+    public boolean isValidFirstName(String firstName) throws InvalidUserDetailsException {
         if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
             return true;
         }
         else {
-            System.out.println("Invalid First Name");
-            return false;
+            throw new InvalidUserDetailsException("Invalid First Name");
         }
     }
-    public boolean validLastName(String lastName){
+    public boolean isValidLastName(String lastName) throws InvalidUserDetailsException {
         if(Pattern.matches("^[A-Z][a-z]{2,}",lastName)){
             return true;
         }
         else {
-            System.out.println("Invalid Last Name");
-            return false;
+            throw new InvalidUserDetailsException("Invalid Last Name");
         }
     }
-    public boolean validEmail(String email){
+    public boolean isValidEmail(String email) throws InvalidUserDetailsException{
         if(Pattern.matches("^(?!^[0-9])[A-Za-z0-9.]+@[a-z.]+$",email)){
             return true;
         }
         else {
-//            System.out.println("Invalid Email");
-            return false;
+            throw new InvalidUserDetailsException("Invalid Email");
         }
     }
-    public boolean validMobileNumber(String mobileNumber){
+    public boolean isValidMobileNumber(String mobileNumber) throws InvalidUserDetailsException{
         if(Pattern.matches("^[9]{1}[1]{1}\\s[0-9]{10}$",mobileNumber)){
             return true;
         }
         else {
-            System.out.println("Invalid Mobile Number");
-            return false;
+            throw new InvalidUserDetailsException("Invalid Mobile Number");
         }
     }
     //Atleast 1 upper case & Minimum 8 characters
     // at least 1 numeric number in the password
     // exactly 1 special character
-    public boolean validPassword(String password){
+    public boolean isValidPassword(String password)throws InvalidUserDetailsException{
         if(Pattern.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[!@#$%^&*][^!@#$%^&*]*$)[a-zA-Z0-9!@#$%^&*]{8,}$",
                 password)){
             return true;
         }
         else {
-            System.out.println("Invalid Password");
-            return false;
+            throw new InvalidUserDetailsException("Invalid Password");
         }
     }
     String firstName,lastName,email,mobileNumber,password;
     Scanner sc = new Scanner(System.in);
-    public void setDetails(){
+    public void setDetails() throws InvalidUserDetailsException {
         System.out.println("Enter First Name : ");
         firstName = sc.nextLine();
         System.out.println("Enter Last Name : ");
@@ -86,8 +87,8 @@ class validateUser{
         mobileNumber = sc.nextLine();
         System.out.println("Enter Password : ");
         password = sc.next();
-        if(validFirstName(firstName) && validLastName(lastName) && validEmail(email) &&
-                validMobileNumber(mobileNumber) && validPassword(password)){
+        if(isValidFirstName(firstName) && isValidLastName(lastName) && isValidEmail(email) &&
+                isValidMobileNumber(mobileNumber) && isValidPassword(password)){
             User prakash = new User(firstName,lastName,email,mobileNumber,password);
             System.out.println(prakash);
         }
@@ -99,9 +100,5 @@ class validateUser{
 public class User_Registration {
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Problem...");
-//        validateUser v = new validateUser();
-//        v.setDetails();
-//        System.out.println(v.validEmail("abc.xyz@bl.co.in"));
-
     }
 }
