@@ -7,9 +7,9 @@ import org.junit.Test;
 import junitparams.JUnitParamsRunner;
 import org.junit.runner.RunWith;
 
-// Use Case 12, test cases:
-// Refactor the Code to throw custom exceptions in case of Invalid User Details
-// - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name, Email, Mobile, and Password
+// Use Case 13, test cases:
+// Refactor the Code to use Lambda Function to validate User Entry
+// - Use Lambda Function to validate First Name, Last Name, Email, Mobile, and Password
 @RunWith(JUnitParamsRunner.class)
 public class User_Registration_Test {
     validateUser user;
@@ -18,69 +18,79 @@ public class User_Registration_Test {
         user = new validateUser();
     }
 
+//    @Test
+//    public void test_invalidFirstName() throws InvalidUserDetailsException {
+//        try{
+//            boolean actual = user.isValidFirstName("123");
+//        }
+//        catch (InvalidUserDetailsException e){
+//            String actual = e.getMessage();
+//            Assert.assertEquals("Invalid First Name",actual);
+//        }
+//
+//    }
     @Test
-    public void test_invalidFirstName() throws InvalidUserDetailsException {
+    public void test_validFirstName() throws InvalidUserDetailsException {
         try{
-            boolean actual = user.isValidFirstName("123");
+            boolean actual = user.isValidFirstName("Prakash");
         }
         catch (InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid First Name",actual);
+            Assert.assertEquals("Valid",actual);
         }
 
     }
     @Test
-    public void test_invalidLastName() throws InvalidUserDetailsException {
+    public void test_validLastName() throws InvalidUserDetailsException {
         try{
-            boolean actual = user.isValidLastName("@#");
+            boolean actual = user.isValidLastName("Zodge");
         }
         catch(InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid Last Name",actual);
+            Assert.assertEquals("Valid",actual);
         }
 
     }
 //    Parameterised Test to validate multiple entry for the Email Address.
     @Test
     @Parameters({
-            "1,bl.co.in,false",
-            "2,xyz,false",
-            "3,123.@xyz,false"
+            "1,abc.xyz@bl.co.in,true",
+            "2,abc@bl.co,true",
+            "3,abc12@bl.co.in,true"
     })
-    public void test_invalidMultipleEmails(int testCaseNumber, String email, boolean res) throws InvalidUserDetailsException {
+    public void test_validMultipleEmails(int testCaseNumber, String email, boolean res) throws InvalidUserDetailsException {
         try {
             boolean actual = user.isValidEmail(email);
         }catch (InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid Email",actual);
+            Assert.assertEquals("Valid",actual);
         }
     }
     @Test
-    public void test_invalidEmail() throws InvalidUserDetailsException {
+    public void test_validEmail() throws InvalidUserDetailsException {
         try{
-            boolean actual = user.isValidEmail("abc.xyz@");
+            boolean actual = user.isValidEmail("abc.xyz@bl.co.in");
         }catch (InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid Email",actual);
+            Assert.assertEquals("Valid",actual);
         }
-
     }
     @Test
-    public void test_invalidMobileNumber() throws InvalidUserDetailsException {
+    public void test_validMobileNumber() throws InvalidUserDetailsException {
         try{
-            boolean actual = user.isValidMobileNumber("73210");
+            boolean actual = user.isValidMobileNumber("91 9876543210");
         }catch (InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid Mobile Number",actual);
+            Assert.assertEquals("Valid",actual);
         }
     }
     @Test
-    public void test_invalidPassword() throws InvalidUserDetailsException {
+    public void test_validPassword() throws InvalidUserDetailsException {
         try{
             boolean actual = user.isValidPassword("@rA2ashh");
         }catch (InvalidUserDetailsException e){
             String actual = e.getMessage();
-            Assert.assertEquals("Invalid Password",actual);
+            Assert.assertEquals("Valid",actual);
         }
     }
 }

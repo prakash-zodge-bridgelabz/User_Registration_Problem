@@ -1,11 +1,12 @@
 package com.bridgelabz;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-// Use Case 12:
-// Refactor the Code to throw custom exceptions in case of Invalid User Details
-// - Rewrite all Test Cases to take in Custom Exception for Invalid First Name, Last Name, Email, Mobile, and Password
+// Use Case 13:
+// Refactor the Code to use Lambda Function to validate User Entry
+// - Use Lambda Function to validate First Name, Last Name, Email, Mobile, and Password
 class User{
     String firstName,lastName,email,mobileNumber,password;
     User(String firstName,String lastName,String email,String mobileNumber,String password){
@@ -29,73 +30,66 @@ class InvalidUserDetailsException extends Exception{
         super(errorMessage);
     }
 }
+interface isValid{
+    boolean isValidFirstName(String firstName)throws InvalidUserDetailsException;
+}
 class validateUser{
+    void validateEntry(String input, Predicate<String>... validations) throws InvalidUserDetailsException{
+        for(Predicate<String> validation: validations){
+            if(!validation.test(input)){
+                System.out.println(input + ": " + "Invalid");
+                throw new InvalidUserDetailsException("Invalid");
+            }
+        }
+        System.out.println(input + ": " + "Valid");
+    }
     public boolean isValidFirstName(String firstName) throws InvalidUserDetailsException {
-        if(Pattern.matches("^[A-Z][a-z]{2,}",firstName)){
-            return true;
-        }
-        else {
-            throw new InvalidUserDetailsException("Invalid First Name");
-        }
+        validateEntry(firstName,firstName1 -> Pattern.compile("^[A-Z][a-z]{2,}").matcher(firstName).matches());
+        return true;
     }
     public boolean isValidLastName(String lastName) throws InvalidUserDetailsException {
-        if(Pattern.matches("^[A-Z][a-z]{2,}",lastName)){
-            return true;
-        }
-        else {
-            throw new InvalidUserDetailsException("Invalid Last Name");
-        }
+        validateEntry(lastName,lastName1 -> Pattern.compile("^[A-Z][a-z]{2,}").matcher(lastName).matches());
+        return true;
     }
     public boolean isValidEmail(String email) throws InvalidUserDetailsException{
-        if(Pattern.matches("^(?!^[0-9])[A-Za-z0-9.]+@[a-z.]+$",email)){
-            return true;
-        }
-        else {
-            throw new InvalidUserDetailsException("Invalid Email");
-        }
+        validateEntry(email,email1 -> Pattern.compile("^(?!^[0-9])[A-Za-z0-9.]+@[a-z.]+$").matcher(email).matches());
+        return true;
     }
     public boolean isValidMobileNumber(String mobileNumber) throws InvalidUserDetailsException{
-        if(Pattern.matches("^[9]{1}[1]{1}\\s[0-9]{10}$",mobileNumber)){
-            return true;
-        }
-        else {
-            throw new InvalidUserDetailsException("Invalid Mobile Number");
-        }
+        validateEntry(mobileNumber,mobileNumber1 -> Pattern.compile("^[9]{1}[1]{1}\\s[0-9]{10}$").matcher(mobileNumber).matches());
+        return true;
     }
     //Atleast 1 upper case & Minimum 8 characters
     // at least 1 numeric number in the password
     // exactly 1 special character
     public boolean isValidPassword(String password)throws InvalidUserDetailsException{
-        if(Pattern.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[!@#$%^&*][^!@#$%^&*]*$)[a-zA-Z0-9!@#$%^&*]{8,}$",
-                password)){
-            return true;
-        }
-        else {
-            throw new InvalidUserDetailsException("Invalid Password");
-        }
+        validateEntry(password,password1 -> Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[!@#$%^&*][^!@#$%^&*]*$)[a-zA-Z0-9!@#$%^&*]{8,}$").matcher(password).matches());
+        return true;
     }
-    String firstName,lastName,email,mobileNumber,password;
-    Scanner sc = new Scanner(System.in);
-    public void setDetails() throws InvalidUserDetailsException {
-        System.out.println("Enter First Name : ");
-        firstName = sc.nextLine();
-        System.out.println("Enter Last Name : ");
-        lastName = sc.nextLine();
-        System.out.println("Enter Email : ");
-        email = sc.nextLine();
-        System.out.println("Enter Mobile Number : ");
-        mobileNumber = sc.nextLine();
-        System.out.println("Enter Password : ");
-        password = sc.next();
-        if(isValidFirstName(firstName) && isValidLastName(lastName) && isValidEmail(email) &&
-                isValidMobileNumber(mobileNumber) && isValidPassword(password)){
-            User prakash = new User(firstName,lastName,email,mobileNumber,password);
-            System.out.println(prakash);
-        }
-        else {
-            System.out.println("Invalid Details...");
-        }
-    }
+
+
+//    String firstName,lastName,email,mobileNumber,password;
+//    Scanner sc = new Scanner(System.in);
+//    public void setDetails() throws InvalidUserDetailsException {
+//        System.out.println("Enter First Name : ");
+//        firstName = sc.nextLine();
+//        System.out.println("Enter Last Name : ");
+//        lastName = sc.nextLine();
+//        System.out.println("Enter Email : ");
+//        email = sc.nextLine();
+//        System.out.println("Enter Mobile Number : ");
+//        mobileNumber = sc.nextLine();
+//        System.out.println("Enter Password : ");
+//        password = sc.next();
+//        if(isValidFirstName(firstName) && isValidLastName(lastName) && isValidEmail(email) &&
+//                isValidMobileNumber(mobileNumber) && isValidPassword(password)){
+//            User prakash = new User(firstName,lastName,email,mobileNumber,password);
+//            System.out.println(prakash);
+//        }
+//        else {
+//            System.out.println("Invalid Details...");
+//        }
+//    }
 }
 public class User_Registration {
     public static void main(String[] args) {
